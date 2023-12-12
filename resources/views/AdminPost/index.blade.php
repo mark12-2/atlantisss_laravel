@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@include('layouts.admin_nav')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="{{ url('/css/app.css') }}" rel="stylesheet">
-
-    <title>Index</title>
-</head>
-<body>
-    
-<h1 class="text-center mt-5">Index (Admin)</h1>
+<thead>
+        <h1 class="text-center mt-5">Index (Admin)</h1>
     <hr>
 <br>
 
     <table class="table">
-        <thead>
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
@@ -45,10 +34,13 @@
                     <td>
                         <a class="btn btn-primary" href="{{route('admin.posts.edit', $post->id)}}">Edit</a>
                     </td>
-                
+                    <td>
+                        <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+                    </td>
                 
             </tr>
             @endforeach
-
-</body>
-</html>

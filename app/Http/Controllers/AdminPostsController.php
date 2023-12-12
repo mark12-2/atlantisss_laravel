@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Topics;
+use App\Models\User;
 
 class AdminPostsController extends Controller
 {
@@ -46,7 +47,7 @@ class AdminPostsController extends Controller
 
         $post->save();
 
-        return redirect()->route('admin.posts.create')->with('success', 'Post Created Successfully');
+        return redirect()->route('admin.posts.index')->with('success', 'Post Created Successfully');
 
     }
 
@@ -85,18 +86,33 @@ class AdminPostsController extends Controller
     $post->save();
 
     return redirect()->route('admin.posts.index')->with('success', 'Post Updated Successfully');
-}
+    }
 
     
     public function destroy(string $id)
     {
         
-        // $project = Project::find($id);
-        // @unlink(public_path($project->thumbnail));
-        // $project->delete();
-
-        // return redirect()->route('admin.projects.index')->with('success', 'Project Updated Successfully!');
-
+        $post = Topics::find($id);
+        $post->delete(); 
+        return redirect()->route('admin.posts.index')->with('success', 'Post Deleted Successfully');
     
     }
+
+    // user management and views
+    public function manage()
+    {
+
+    $users = User::all();
+    return view('AdminPost/manage_users', compact('users'));
+    
+    }
+
+    public function destroyUser($id)
+    {
+    $user = User::find($id);
+    $user->delete();
+
+    return redirect()->route('admin.posts.manage')->with('success', 'User deleted successfully');
+    }
+
 }
