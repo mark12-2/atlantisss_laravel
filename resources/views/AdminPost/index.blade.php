@@ -1,5 +1,6 @@
 @include('layouts.admin_nav')
 
+<div>
 <thead>
         <h1 class="text-center mt-5">Index (Admin)</h1>
     <hr>
@@ -15,7 +16,8 @@
             <th scope="col">About</th>
             <th scope="col">Created_at</th>
             <th scope="col">Updated_at</th>
-            <th scope="col">Action</th>
+            <th scope="col">Edit Post</th>
+            <th scope="col">Terminate Post</th>
           </tr>
         </thead>
         <tbody>
@@ -43,4 +45,6 @@
                     </td>
                 
             </tr>
+
+            
             @endforeach

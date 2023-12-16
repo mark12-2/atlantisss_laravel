@@ -20,7 +20,7 @@ class Topics extends Model
        }
 
        public function savedByUsers()
-{
-    return $this->belongsToMany(User::class, 'saved_posts');
-}
+       {
+           return $this->belongsToMany('App\Models\User');
+       }
 }

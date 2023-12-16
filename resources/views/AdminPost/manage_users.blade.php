@@ -1,6 +1,10 @@
 @extends('layouts.admin_nav')
 
 @section('content')
+
+<h1 class="text-center mt-5">User Management</h1>
+    <hr>
+
     <table class="table">
         <thead>
             <tr>

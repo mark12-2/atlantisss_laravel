@@ -43,5 +43,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
     
+    public function savedTopics()
+{
+    return $this->belongsToMany('App\Models\Topics');
+}
+
 }

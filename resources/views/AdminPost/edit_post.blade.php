@@ -1,5 +1,5 @@
 @include('layouts.admin_nav')
-    
+
 <h1 class="text-center mt-5">Edit Post (Admin)</h1>
     <hr>
 
@@ -42,7 +42,8 @@
             </div>
 
 
-            <button class="btn btn-success" type="submit" value="submit">Update Post</button>
+            <button class="btn btn-success" type="submit" value="submit">Update Post</button> |
+            <button class="btn btn-danger" href="{{ route('admin.posts.index') }}">Cancel</button>
 
         </form>
 

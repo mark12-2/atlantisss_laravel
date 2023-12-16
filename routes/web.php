@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +31,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function() {
     Route::delete('/posts/delete/{id}', [App\Http\Controllers\AdminPostsController::class, 'destroy'])->name('admin.posts.destroy'); // delete function 
 
     Route::get('/posts/manage', [App\Http\Controllers\AdminPostsController::class, 'manage'])->name('admin.posts.manage');
-    Route::delete('/users/{id}/delete', [App\Http\Controllers\AdminPostsController::class, 'destroyUser'])->name('admin.posts.destroy');
+    Route::delete('/users/{id}/delete', [App\Http\Controllers\AdminPostsController::class, 'destroyUser'])->name('admin.posts.destroyUser');
 });
 
 
 //users panel and functions
 Route::get('/posts/index', [App\Http\Controllers\HomePageController::class, 'index'])->name('posts.index');
+Route::post('/user/{user}/saveTopic', [UserController::class, 'saveTopic'])->name('user.saveTopic');
+Route::delete('/user/{user}/removeSavedTopic/{topic}', [UserController::class, 'removeSavedTopic'])->name('user.removeSavedTopic');
+Route::get('/user/{user}/show', [UserController::class, 'show'])->name('user.show');
+Route::get('/user/{user}/savedTopics', [UserController::class, 'showSavedTopics'])->name('user.savedTopics');
 
 
 Auth::routes();

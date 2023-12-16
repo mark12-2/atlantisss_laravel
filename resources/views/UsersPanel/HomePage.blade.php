@@ -32,6 +32,16 @@
                                         </div>
                                         <small class="text-muted">{{$post->category->name}}</small>
                                     </div>
+                                    @if (auth()->check())
+                                    <form method="POST" action="{{ route('user.saveTopic', ['user' => auth()->user()->id]) }}">
+                                        @csrf
+                                        <input type="hidden" name="topics_id" value="{{ $post->id }}">
+                                        <button type="submit">Save Topic</button>
+                                    </form>
+                                    @if (auth()->user()->savedTopics->contains($post->id))
+                                        <p>The user has saved this topic.</p>
+                                    @endif
+                                @endif
                                 </div>
                             </div>
                         </div>

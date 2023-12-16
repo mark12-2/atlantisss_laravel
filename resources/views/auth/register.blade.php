@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Section: Design Block -->
-<section class="text-center text-lg-start">
+<section class="text-center text-lg-start" style="background-image: url('{{ asset('http://www.pixelstalk.net/wp-content/uploads/2016/04/Free-grey-wallpaper-HD-background-download.jpg') }}')">
   <style>
     .cascading-right {
       margin-right: -50px;

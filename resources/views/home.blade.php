@@ -39,7 +39,8 @@
                     <br> Make it short and sweet, but not too short so folks don't simply skip over it entirely.
                 </p>
                 <br><br>
-                <a href="{{ route('posts.index') }}" class="btn btn-primary">View Posts >>></a>
+                <a href="{{ route('posts.index') }}" class="btn btn-primary">View Posts >>></a><br><br>
+                <a href="{{ route('user.savedTopics', ['user' => auth()->user()->id]) }}">View Saved Topics</a>
             </div>
         </section>
        
