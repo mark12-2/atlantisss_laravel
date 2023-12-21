@@ -36,9 +36,6 @@
                                     <a class="nav-link" href="{{ route('admin.posts.index') }}">Posts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.posts.create') }}">Create Post&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.posts.manage') }}">Manage Users</a>
                                 </li>
                             @endif

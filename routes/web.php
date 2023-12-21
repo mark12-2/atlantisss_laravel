@@ -4,16 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,12 +25,18 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function() {
 });
 
 
-//users panel and functions
+//users panel and functions - crud operations and saving a post
 Route::get('/posts/index', [App\Http\Controllers\HomePageController::class, 'index'])->name('posts.index');
 Route::post('/user/{user}/saveTopic', [UserController::class, 'saveTopic'])->name('user.saveTopic');
-Route::delete('/user/{user}/removeSavedTopic/{topic}', [UserController::class, 'removeSavedTopic'])->name('user.removeSavedTopic');
+// Route::delete('/user/{user}/removeSavedTopic/{topic}', [UserController::class, 'removeSavedTopic'])->name('user.removeSavedTopic');
 Route::get('/user/{user}/show', [UserController::class, 'show'])->name('user.show');
 Route::get('/user/{user}/savedTopics', [UserController::class, 'showSavedTopics'])->name('user.savedTopics');
+//creating posties
+Route::get('/user/{user}/createPost', [UserController::class, 'createPost'])->name('user.createPost');
+Route::post('/user/{user}/storePost', [UserController::class, 'storePost'])->name('user.storePost');
+Route::get('/user/{user}/editPost/{id}', [UserController::class, 'editPost'])->name('user.editPost');
+Route::post('/user/{user}/updatePost/{id}', [UserController::class, 'updatePost'])->name('user.updatePost');
+Route::delete('/user/{user}/destroyPost/{id}', [UserController::class, 'destroyPost'])->name('user.destroyPost');
 
 
 Auth::routes();

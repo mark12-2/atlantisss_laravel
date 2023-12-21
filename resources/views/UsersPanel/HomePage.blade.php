@@ -6,14 +6,16 @@
 <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="album.css" rel="stylesheet">
-</head><br>
+</head>
 
-<body style="background-image: url('https://wallpapercave.com/wp/wp7866138.jpg')">
+<body>
     <main role="main">
-        <br>
+        
 
         <div class="container">
-            <h2 class="text-center mt-5 text-white">Recent Posts</h2>
+            <h2 class=" mt-5 text-dark">Recent Posts</h2><br><br><br>
+            <!-- creating post for user -->
+            <a href="{{ route('user.createPost', ['user' => auth()->user()->id]) }}" class="btn btn-primary">Create Post</a>
             <hr style="color:white;">
             <div class="row">
                 @if($topics)
@@ -36,8 +38,19 @@
                                     <form method="POST" action="{{ route('user.saveTopic', ['user' => auth()->user()->id]) }}">
                                         @csrf
                                         <input type="hidden" name="topics_id" value="{{ $post->id }}">
-                                        <button type="submit">Save Topic</button>
+                                        <button class="btn btn-secondary" type="submit">Save Topic</button>
                                     </form>
+                                    
+                                    <!-- edit and operations -->
+                                    @if (auth()->check() && auth()->user()->id === $post->user_id)
+                                        <a href="{{ route('user.editPost', ['user' => auth()->user()->id, 'id' => $post->id]) }}" class="btn btn-primary">Edit Post</a>
+
+                                        <form action="{{ route('user.destroyPost', ['user' => auth()->user()->id, 'id' => $post->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete Post</button>
+                                        </form>
+                                    @endif
                                     @if (auth()->user()->savedTopics->contains($post->id))
                                         <p>The user has saved this topic.</p>
                                     @endif

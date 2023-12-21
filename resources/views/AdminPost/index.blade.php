@@ -3,9 +3,10 @@
 <div>
 <thead>
         <h1 class="text-center mt-5">Index (Admin)</h1>
-    <hr>
 <br>
 
+<a class="btn btn-primary" class="nav-link" style="float: right; margin-right: 100px;" href="{{ route('admin.posts.create') }}">Create Post</a>
+                                <br><br><hr><br>
     <table class="table">
           <tr>
             <th scope="col">ID</th>
@@ -45,6 +46,7 @@
                     </td>
                 
             </tr>
-
             
             @endforeach
+
+           <center> {{ $topics->links('custom') }} </center>

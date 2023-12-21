@@ -12,7 +12,7 @@ class AdminPostsController extends Controller
   
     public function index()
     {
-        $topics = Topics::all();
+        $topics = Topics::paginate(2); 
         return view('AdminPost.index', compact('topics'));
     }
 

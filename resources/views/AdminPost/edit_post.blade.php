@@ -5,7 +5,11 @@
 
     <div class="container justify-content-center mt-2 mb-5">
 
-        <form action="{{route('admin.posts.update', $topics->id)}}" method="POST" enctype="multipart/form-data">
+            @if (auth()->user()->role == '1') 
+                <form action="{{route('admin.posts.update', $topics->id)}}" method="POST" enctype="multipart/form-data">
+            @else
+                <form action="{{route('user.updatePost', ['user' => auth()->user()->id, 'id' => $topics->id])}}" method="POST" enctype="multipart/form-data">
+            @endif
             @csrf
 
             <center><div>

@@ -1,12 +1,12 @@
 @include('layouts.admin_nav')
 
     
-<h1 class="text-center mt-5">Create Post (Admin)</h1>
+<h1 class="text-center mt-5">Create Post</h1>
     <hr>
 
     <div class="container justify-content-center mt-2 mb-5">
 
-        <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('user.storePost', ['user' => auth()->user()->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group m-2 p-2">

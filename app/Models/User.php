@@ -44,10 +44,14 @@ class User extends Authenticatable
     ];
 
 
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Topics');
+    }
     
     public function savedTopics()
-{
-    return $this->belongsToMany('App\Models\Topics');
-}
+    {
+        return $this->belongsToMany('App\Models\Topics');
+    }
 
 }
