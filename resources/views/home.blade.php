@@ -40,7 +40,7 @@
                 </p>
                 <br><br>
                 <a href="{{ route('posts.index') }}" class="btn btn-primary">View Posts >>></a><br><br>
-                <a href="{{ route('user.savedTopics', ['user' => auth()->user()->id]) }}">View Saved Topics</a>
+                <a  class="btn btn-secondary" href="{{ route('user.savedTopics', ['user' => auth()->user()->id]) }}">View Saved Posts</a>
             </div>
         </section>
        

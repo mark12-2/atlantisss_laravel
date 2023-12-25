@@ -26,17 +26,17 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function() {
 
 
 //users panel and functions - crud operations and saving a post
-Route::get('/posts/index', [App\Http\Controllers\HomePageController::class, 'index'])->name('posts.index');
-Route::post('/user/{user}/saveTopic', [UserController::class, 'saveTopic'])->name('user.saveTopic');
-// Route::delete('/user/{user}/removeSavedTopic/{topic}', [UserController::class, 'removeSavedTopic'])->name('user.removeSavedTopic');
-Route::get('/user/{user}/show', [UserController::class, 'show'])->name('user.show');
-Route::get('/user/{user}/savedTopics', [UserController::class, 'showSavedTopics'])->name('user.savedTopics');
+    Route::get('/posts/index', [App\Http\Controllers\HomePageController::class, 'index'])->name('posts.index');
+    Route::post('/user/{user}/saveTopic', [UserController::class, 'saveTopic'])->name('user.saveTopic');
+    Route::get('/user/{user}/show', [UserController::class, 'show'])->name('user.show');
+    Route::get('/user/{user}/savedTopics', [UserController::class, 'showSavedTopics'])->name('user.savedTopics');
+    Route::post('/user/{user}/unsaveTopic', [UserController::class, 'unsaveTopic'])->name('user.unsaveTopic');
 //creating posties
-Route::get('/user/{user}/createPost', [UserController::class, 'createPost'])->name('user.createPost');
-Route::post('/user/{user}/storePost', [UserController::class, 'storePost'])->name('user.storePost');
-Route::get('/user/{user}/editPost/{id}', [UserController::class, 'editPost'])->name('user.editPost');
-Route::post('/user/{user}/updatePost/{id}', [UserController::class, 'updatePost'])->name('user.updatePost');
-Route::delete('/user/{user}/destroyPost/{id}', [UserController::class, 'destroyPost'])->name('user.destroyPost');
+    Route::get('/user/{user}/createPost', [UserController::class, 'createPost'])->name('user.createPost');
+    Route::post('/user/{user}/storePost', [UserController::class, 'storePost'])->name('user.storePost');
+    Route::get('/user/{user}/editPost/{id}', [UserController::class, 'editPost'])->name('user.editPost');
+    Route::post('/user/{user}/updatePost/{id}', [UserController::class, 'updatePost'])->name('user.updatePost');
+    Route::delete('/user/{user}/destroyPost/{id}', [UserController::class, 'destroyPost'])->name('user.destroyPost');
 
 
 Auth::routes();

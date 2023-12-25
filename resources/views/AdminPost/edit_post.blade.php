@@ -5,11 +5,11 @@
 
     <div class="container justify-content-center mt-2 mb-5">
 
-            @if (auth()->user()->role == '1') 
-                <form action="{{route('admin.posts.update', $topics->id)}}" method="POST" enctype="multipart/form-data">
-            @else
-                <form action="{{route('user.updatePost', ['user' => auth()->user()->id, 'id' => $topics->id])}}" method="POST" enctype="multipart/form-data">
-            @endif
+                    @if (auth()->user()->role == '1')
+                    <form action="{{route('admin.posts.update', $topics->id)}}" method="POST" enctype="multipart/form-data">
+                @else
+                    <form action="{{route('user.updatePost', ['user' => auth()->user()->id, 'id' => $topics->id])}}" method="POST" enctype="multipart/form-data">
+                @endif
             @csrf
 
             <center><div>
@@ -40,14 +40,20 @@
                 </select>
             </div>
 
-            <div class="form-group m-2 p-2">
-                <label for="project_description">About</label>
-                <textarea class="form-control" name="describe" cols="30" rows="10">{{$topics->describe}}</textarea>
+                    
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group m-2 p-2">
+                        <label for="project_description">About</label>
+                        <textarea class="form-control" name="describe" cols="30" rows="10">{{ $topics->describe }}</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <button class="btn btn-success" type="submit" value="submit">Update Post</button> 
+                    <a class="btn btn-danger" href="{{ route('admin.posts.index') }}">Cancel</a>
+                </div>
             </div>
-
-
-            <button class="btn btn-success" type="submit" value="submit">Update Post</button> |
-            <button class="btn btn-danger" href="{{ route('admin.posts.index') }}">Cancel</button>
 
         </form>
 

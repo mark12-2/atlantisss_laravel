@@ -10,7 +10,7 @@
         @foreach ($savedTopics as $topic)
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{ $topic->img }}" alt="Card image cap" style="width: 100%; height: 200px;">
+                    <img class="card-img-top" src="{{ $topic->img }}" alt="Card image cap" style="width: 100%; height: 260px;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $topic->title }}</h5>
                         <p class="card-text">Description: {{ $topic->description }}</p>

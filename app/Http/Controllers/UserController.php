@@ -45,9 +45,9 @@ class UserController extends Controller
 
         public function editPost($id)
         {
-        $post = Topics::find($id);
-        $categories = Category::all();
-        return view('AdminPost.edit_post', compact('post', 'categories'));
+            $topics = Topics::find($id);
+            $categories = Category::all();
+            return view('AdminPost.edit_post', compact('topics', 'categories'));
         }
 
         public function updatePost(Request $request, $id)
@@ -70,25 +70,18 @@ class UserController extends Controller
 
             $post->save();
 
+            return redirect()->route('posts.index')->with('success', 'Post Updated Successfully');
+
         }
-
-            public function destroyPost($id)
-            {
-                if (Auth::check()) {
-                    $user = Auth::user();
-                    $post = Topics::find($id);
-
-                    // Check if the user is the owner of the post
-                    if ($user->id === $post->user_id) {
-                        $post->delete();
-                        return redirect()->route('posts.index')->with('success', 'Post Deleted Successfully');
-                    } else {
-                        return redirect()->route('posts.index')->with('error', 'You do not have permission to delete this post');
-                    }
-                } else {
-                    return redirect()->route('login')->with('error', 'Please log in to delete a post');
-                }
+        public function destroyPost($id)
+        {
+            if (Auth::check()) {
+                $user = Auth::user();
+                $post = Topics::findOrFail($id);
+                $post->delete();
+                return redirect()->route('posts.index')->with('success', 'Post Deleted Successfully');
             }
+        }
         
 
 
@@ -117,9 +110,16 @@ class UserController extends Controller
 
     // saving topics
     public function showSavedTopics(User $user)
-{
-    $savedTopics = $user->savedTopics;
+    {
+        $savedTopics = $user->savedTopics;
 
-    return view('user.savedTopics', ['savedTopics' => $savedTopics]);
-}
+        return view('user.savedTopics', ['savedTopics' => $savedTopics]);
+    }
+
+    public function unsaveTopic(Request $request, User $user)
+    {
+        $user->savedTopics()->detach($request->topics_id);
+
+        return back();
+    }
 }
