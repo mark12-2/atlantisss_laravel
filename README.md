@@ -35,7 +35,9 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 Clone your project
 Go to the folder application using cd command on your cmd or terminal. 
 
-Run composer install on your cmd or terminal. 
+Run composer install on your cmd or terminal.
+
+Run npm run install 
 
 Copy .env.example file to .env on the root folder. 
 
